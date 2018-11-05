@@ -17,13 +17,13 @@ const data = [{
 
 const canvas = d3.select('.canvas')
 const svg = canvas.select('svg') //return actually svg tag
-    .attr('height', 600)
-    .attr('width', 600)
+    .attr('height', 300)
+    .attr('width', 300)
 
 const group = svg.append('g')
     .attr('transform', 'translate(0,10)')
 
-svg.selectAll('rect')
+const rects = svg.selectAll('rect')
     .data(data)
     .attr('height', (d, i, n) => d.height)
     .attr('width', (d) => d.width)
@@ -32,6 +32,11 @@ svg.selectAll('rect')
     .attr('y', 20)
 
 rects.enter().append('rect')
+    .attr('height', (d, i, n) => d.height)
+    .attr('width', (d) => d.width)
+    .attr('fill', (d) => d.fill)
+    .attr('x', 20)
+    .attr('y', 20)
 // group.append('circle')
 //     .attr('r', 50)
 //     .attr('fill', 'blue')
