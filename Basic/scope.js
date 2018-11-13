@@ -102,6 +102,7 @@ function foo2() {
 }
 
 function bam2() {
+	bar = 'bam2'
 	foo2()() //bar
 }
 
