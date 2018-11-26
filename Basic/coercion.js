@@ -30,3 +30,22 @@ console.log(foo);
 console.log("String()");
 foo = String(baz)
 console.log(foo);
+
+console.log("boolean");
+foo = "123"
+baz = Boolean(foo)
+console.log(baz)
+
+baz = !!foo
+console.log(baz)
+
+baz = foo ? true : false
+console.log(baz)
+
+console.log(Date.now())
+
+foo = "foo"
+
+if (~foo.indexOf("mnf")) {
+    console.log("found it")
+}
