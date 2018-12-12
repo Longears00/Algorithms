@@ -1,7 +1,9 @@
-let typeofFunction = () => {
-    console.log(this);
-    console.log(this.message);
-    console.log('i am a function');
+let test = [ 1, 2, 5, 2, 1, 8 ]
+
+let obj = {}
+for (let i of test) {
+	obj[i] = true
 }
 
-// console.log(typeof typeofFunction);
+let result = Object.keys(obj)
+console.log(result)
