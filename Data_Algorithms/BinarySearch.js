@@ -51,3 +51,19 @@ function BinarySearchIterative(array, element) {
 let result2 = BinarySearchIterative(arr, searchValue)
 
 console.log(result2)
+
+function binarySearch(arr, key) {
+	var len = arr.length
+	var middle = Math.floor(len / 2)
+	var middleElem = arr[middle]
+	if (middleElem === key) {
+		return true
+	} else if (middleElem > key && len > 1) {
+		return binarySearch(arr.slice(0, middle), key)
+	} else if (middleElem < key && len > 1) {
+		return binarySearch(arr.slice(middle), key)
+	}
+	return false
+}
+
+console.log(binarySearch([ 5, 7, 12, 16, 36, 42, 56, 71 ], 1))
