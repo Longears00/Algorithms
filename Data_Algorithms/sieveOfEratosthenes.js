@@ -1,10 +1,10 @@
 function sieveOfEratosthenes(num) {
 	var primes = []
-	for (var i = 0; i <= num; i++) {
-		primes[i] = true
-	}
 	primes[0] = false
 	primes[1] = false
+	for (var i = 2; i <= num; i++) {
+		primes[i] = true
+	}
 
 	for (var n = 2; n <= Math.sqrt(num); n++) {
 		for (var j = 2; j * n <= num; j++) {
