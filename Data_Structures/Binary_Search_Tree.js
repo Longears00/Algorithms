@@ -3,7 +3,7 @@ function BST(value) {
 	this.left = null
 	this.right = null
 }
-BST.prototype.insert = function(value) {
+BST.prototype.insert = function (value) {
 	if (value <= this.value) {
 		if (!this.left) {
 			this.left = new BST(value)
@@ -19,7 +19,7 @@ BST.prototype.insert = function(value) {
 	}
 }
 
-BST.prototype.contains = function(value) {
+BST.prototype.contains = function (value) {
 	if (this.value == value) {
 		return true
 	} else if (value < this.value) {
@@ -37,7 +37,7 @@ BST.prototype.contains = function(value) {
 	}
 }
 
-BST.prototype.depthFirstTraversal = function(iteratorFunc, order) {
+BST.prototype.depthFirstTraversal = function (iteratorFunc, order) {
 	if (order === 'pre-order') {
 		iteratorFunc(this.value)
 	}
@@ -59,8 +59,8 @@ function log(value) {
 	console.log(value)
 }
 
-BST.prototype.breadthFirstTraversal = function(iteratorFunc) {
-	var queue = [ this ]
+BST.prototype.breadthFirstTraversal = function (iteratorFunc) {
+	var queue = [this]
 	while (queue.length) {
 		var treeNode = queue.shift()
 
@@ -78,11 +78,11 @@ function log2(node) {
 	console.log(node.value)
 }
 
-BST.prototype.getMinVal = function() {
+BST.prototype.getMinVal = function () {
 	if (this.left) return this.left.getMinVal()
 	else return this.value
 }
-BST.prototype.getMaxVal = function() {
+BST.prototype.getMaxVal = function () {
 	if (this.right) return this.right.getMaxVal()
 	else return this.value
 }
