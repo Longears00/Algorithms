@@ -20,14 +20,14 @@ class LinkList {
 		this.tail.next = newNode
 		this.tail = newNode
 		this.length++
-		console.log(this.head)
+		this.printList()
 	}
 	prepend(value) {
 		const newNode = new Node(value)
 		newNode.next = this.head
 		this.head = newNode
 		this.length++
-		console.log(this.head)
+		this.printList()
 	}
 	insert(index, value) {
 		if (index >= this.length) {
@@ -42,7 +42,7 @@ class LinkList {
 		newNode.next = nextValue
 		this.length++
 
-		console.log(this.printList())
+		this.printList()
 	}
 	remove(index) {
 		if (index >= this.length) {
@@ -57,7 +57,7 @@ class LinkList {
 			preNode.next = unwantedNode.next
 		}
 		this.length--
-		console.log(this.printList())
+		this.printList()
 	}
 	traverseToIndex(index) {
 		let counter = 0
@@ -69,6 +69,23 @@ class LinkList {
 		}
 		return currentNode
 	}
+	reverse() {
+		if (!this.head.next) {
+			return 'no need reverse'
+		}
+		let first = this.head
+		this.tail = first
+		let second = first.next
+		while (second) {
+			const temp = second.next
+			second.next = first
+			first = second
+			second = temp
+		}
+		this.head.next = null
+		this.head = first
+		this.printList()
+	}
 	printList() {
 		const array = []
 		let currentNode = this.head
@@ -76,7 +93,7 @@ class LinkList {
 			array.push(currentNode.value)
 			currentNode = currentNode.next
 		}
-		return array
+		console.log(array);
 	}
 }
 
@@ -84,4 +101,5 @@ let myLinkList = new LinkList(10)
 myLinkList.append(5)
 myLinkList.append(16)
 myLinkList.prepend(1)
-myLinkList.remove(3)
+
+myLinkList.reverse()
