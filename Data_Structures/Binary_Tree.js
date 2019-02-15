@@ -46,6 +46,51 @@ class BinaryTree {
         }
         return 'can not find'
     }
+    remove(value) {
+        let currentNode = this.root
+        let parentNode = null
+        while (currentNode) {
+            if (currentNode.value > value) {
+                parentNode = currentNode
+                currentNode = currentNode.left
+            } else if (currentNode.value <= value) {
+                parentNode = currentNode
+                currentNode = currentNode.right
+            } else if (currentNode.value === value) {
+                let removeValue = currentNode.value
+                //not right child
+                if (currentNode.right === null) {
+                    if (parentNode === null) {
+                        this.root = currentNode.left
+                    } else {
+                        if (currentNode.value < parentNode.value) {
+                            parentNode.left = currentNode.left
+                        } else {
+                            parentNode.right = currentNode.left
+                        }
+                    }
+                }
+                //has right child ,but right child has not left child
+                else if (currentNode.right.left === null) {
+                    if (parentNode === null) {
+                        this.root = currentNode.right
+                    } else {
+                        currentNode.right.left = currentNode.left
+                        if (currentNode.value < parentNode.value) {
+                            parentNode.left = currentNode.right
+                        } else {
+                            parentNode.right = currentNode.right
+                        }
+                    }
+                }
+                //has right child and right child has left child
+                else {
+
+                }
+                return removeValue
+            }
+        }
+    }
 }
 
 let tree = new BinaryTree()
