@@ -57,35 +57,37 @@ class BinaryTree {
                 parentNode = currentNode
                 currentNode = currentNode.right
             } else if (currentNode.value === value) {
-                let removeValue = currentNode.value
-                //not right child
-                if (currentNode.right === null) {
-                    if (parentNode === null) {
-                        this.root = currentNode.left
+                if (currentNode.left === null && currentNode.right === null) {
+                    currentNode.value = null
+                } else if (currentNode.left === null) {
+                    if (parentNode.left === currentNode.value) {
+                        parentNode.left = currentNode.right
                     } else {
-                        if (currentNode.value < parentNode.value) {
+                        parentNode.right = currentNode.right
+                    }
+                } else if (currentNode.right === null) {
+                    if (parentNode.left === currentNode.value) {
+                        parentNode.left = currentNode.left
+                    } else {
+                        parentNode.right = currentNode.left
+                    }
+                } else if (currentNode.left && currentNode.right) {
+                    let tempNode = currentNode.right
+                    if (currentNode.right.left !== null) {
+                        currentNode.right.left.right = tempNode
+                        if (parentNode.left === currentNode.value) {
+                            parentNode.left = currentNode.right.left
+                        } else {
+                            parentNode.right = currentNode.right.left
+                        }
+
+                    } else {
+                        if (parentNode.left === currentNode.value) {
                             parentNode.left = currentNode.left
                         } else {
                             parentNode.right = currentNode.left
                         }
                     }
-                }
-                //has right child ,but right child has not left child
-                else if (currentNode.right.left === null) {
-                    if (parentNode === null) {
-                        this.root = currentNode.right
-                    } else {
-                        currentNode.right.left = currentNode.left
-                        if (currentNode.value < parentNode.value) {
-                            parentNode.left = currentNode.right
-                        } else {
-                            parentNode.right = currentNode.right
-                        }
-                    }
-                }
-                //has right child and right child has left child
-                else {
-
                 }
                 return removeValue
             }
@@ -101,8 +103,8 @@ tree.insert(20)
 tree.insert(170)
 tree.insert(15)
 tree.insert(1)
-//console.log(JSON.stringify(traverse(tree.root)))
-console.log(tree.lookup(1))
+console.log(JSON.stringify(traverse(tree.root)))
+
 //     9
 //  4     20
 //1  6  15  170
