@@ -47,49 +47,60 @@ class BinaryTree {
         return 'can not find'
     }
     remove(value) {
+
         let currentNode = this.root
         let parentNode = null
         while (currentNode) {
             if (currentNode.value > value) {
                 parentNode = currentNode
                 currentNode = currentNode.left
-            } else if (currentNode.value <= value) {
+            }
+            if (currentNode.value < value) {
                 parentNode = currentNode
                 currentNode = currentNode.right
-            } else if (currentNode.value === value) {
+            }
+
+            if (currentNode && currentNode.value === value) {
                 if (currentNode.left === null && currentNode.right === null) {
-                    currentNode.value = null
+
+                    if (parentNode.left.value === currentNode.value) {
+                        parentNode.left = null
+                    } else {
+                        parentNode.right = null
+                    }
                 } else if (currentNode.left === null) {
-                    if (parentNode.left === currentNode.value) {
+                    if (parentNode.left.value === currentNode.value) {
                         parentNode.left = currentNode.right
                     } else {
                         parentNode.right = currentNode.right
                     }
                 } else if (currentNode.right === null) {
-                    if (parentNode.left === currentNode.value) {
+                    if (parentNode.left.value === currentNode.value) {
                         parentNode.left = currentNode.left
                     } else {
                         parentNode.right = currentNode.left
                     }
                 } else if (currentNode.left && currentNode.right) {
+
                     let tempNode = currentNode.right
                     if (currentNode.right.left !== null) {
                         currentNode.right.left.right = tempNode
-                        if (parentNode.left === currentNode.value) {
+                        if (parentNode.left.value === currentNode.value) {
                             parentNode.left = currentNode.right.left
                         } else {
                             parentNode.right = currentNode.right.left
                         }
+                        currentNode.right.left = null
 
                     } else {
-                        if (parentNode.left === currentNode.value) {
+                        if (parentNode.left.value === currentNode.value) {
                             parentNode.left = currentNode.left
                         } else {
                             parentNode.right = currentNode.left
                         }
                     }
                 }
-                return removeValue
+                return currentNode
             }
         }
     }
@@ -132,8 +143,10 @@ class BinaryTree {
     }
     deepFirstSearchRInOrder(node, list) {
         if (node.left) {
+
             this.deepFirstSearchRInOrder(node.left, list)
         }
+
         list.push(node.value)
         if (node.right) {
             this.deepFirstSearchRInOrder(node.right, list)
@@ -176,15 +189,17 @@ tree.insert(20)
 tree.insert(170)
 tree.insert(15)
 tree.insert(1)
+tree.insert(0)
+tree.insert(35)
 //console.log(JSON.stringify(traverse(tree.root)))
 // tree.breathFirstSearch()
 //tree.breathFirstSearchR([tree.root], [])
-
+tree.remove(20)
 console.log(tree.deepFirstSearchRInOrder(tree.root, []))
 
-console.log(tree.deepFirstSearchRPreOrder(tree.root, []));
+//console.log(tree.deepFirstSearchRPreOrder(tree.root, []));
 
-console.log(tree.deepFirstSearchRPostOrder(tree.root, []));
+//console.log(tree.deepFirstSearchRPostOrder(tree.root, []));
 
 //     9
 //  4     20
